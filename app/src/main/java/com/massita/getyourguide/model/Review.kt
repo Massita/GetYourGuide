@@ -4,7 +4,7 @@ import java.util.*
 
 data class Review(
     val id: Int,
-    val author: Author,
+    val author: Author?,
     val title: String?,
     val message: String?,
     val enjoyment: String?,

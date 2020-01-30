@@ -2,5 +2,11 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/app_navigation">
+    android:id="@+id/app_navigation"
+    app:startDestination="@id/reviewListFragment">
+    <fragment
+        android:id="@+id/reviewListFragment"
+        android:name="com.massita.getyourguide.ui.ReviewListFragment"
+        android:label="fragment_review_list"
+        tools:layout="@layout/fragment_review_list" />
 </navigation>
