@@ -3,11 +3,13 @@ package com.massita.getyourguide.ui.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.Navigation
 import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.massita.getyourguide.R
 import com.massita.getyourguide.model.Review
+import com.massita.getyourguide.ui.ReviewListFragmentDirections
 import com.massita.getyourguide.util.setTextOrGone
 import kotlinx.android.synthetic.main.review_item.view.*
 import java.text.DateFormat
@@ -45,6 +47,11 @@ class ReviewsAdapter : PagedListAdapter<Review, ReviewsAdapter.ViewHolder> (diff
             itemView.reviewComment.setTextOrGone(review.message)
             itemView.reviewDate.setTextOrGone(DateFormat.getDateInstance(DateFormat.LONG).format(review.created))
             itemView.ratingBar.rating = review.rating.toFloat()
+
+            val action = ReviewListFragmentDirections.actionReviewListFragmentToReviewDetailFragment(review)
+            itemView.setOnClickListener(
+                Navigation.createNavigateOnClickListener(R.id.action_reviewListFragment_to_reviewDetailFragment, action.arguments)
+            )
         }
 
     }

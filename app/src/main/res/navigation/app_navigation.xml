@@ -7,6 +7,23 @@
     <fragment
         android:id="@+id/reviewListFragment"
         android:name="com.massita.getyourguide.ui.ReviewListFragment"
-        android:label="fragment_review_list"
-        tools:layout="@layout/fragment_review_list" />
+        android:label="Reviews"
+        tools:layout="@layout/fragment_review_list">
+        <action
+            android:id="@+id/action_reviewListFragment_to_reviewDetailFragment"
+            app:destination="@id/reviewDetailFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit" />
+    </fragment>
+    <fragment
+        android:id="@+id/reviewDetailFragment"
+        android:name="com.massita.getyourguide.ui.ReviewDetailFragment"
+        android:label="Review Detail"
+        tools:layout="@layout/fragment_review_detail" >
+        <argument
+            android:name="review"
+            app:argType="com.massita.getyourguide.model.Review" />
+    </fragment>
 </navigation>

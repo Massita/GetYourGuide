@@ -1,7 +1,10 @@
 package com.massita.getyourguide.model
 
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
 import java.util.*
 
+@Parcelize
 data class Review(
     val id: Int,
     val author: Author?,
@@ -13,4 +16,4 @@ data class Review(
     val created: Date,
     val language: String?,
     val travelerType: String?
-)
+) : Parcelable

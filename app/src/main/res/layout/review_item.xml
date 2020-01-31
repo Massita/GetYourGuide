@@ -63,6 +63,4 @@
         app:layout_constraintBottom_toBottomOf="parent"
         tools:text="Comment"/>
 
-    <!-- Reviewer data -->
-
 </androidx.constraintlayout.widget.ConstraintLayout>
