@@ -6,10 +6,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.snackbar.Snackbar
 import com.massita.getyourguide.R
+import com.massita.getyourguide.repository.NetworkState
+import com.massita.getyourguide.repository.Status
 import com.massita.getyourguide.ui.adapter.ReviewsAdapter
 import com.massita.getyourguide.viewmodel.ReviewListViewModel
 import kotlinx.android.synthetic.main.fragment_review_list.*
@@ -47,7 +51,24 @@ class ReviewListFragment : Fragment() {
             adapter = reviewsAdapter
         }
 
-        reviewListViewModel.reviewList.observe(viewLifecycleOwner, Observer { reviewsAdapter.submitList(it) })
+        reviewListViewModel.getReviews().pagedList.observe(viewLifecycleOwner, Observer { reviewsAdapter.submitList(it) })
+        reviewListViewModel.getReviews().networkState.observe(viewLifecycleOwner, Observer { handleNetworkChange(it) })
     }
 
+    private fun handleNetworkChange(networkState: NetworkState) {
+        if(networkState.status == Status.FAILED) {
+            networkState.msg?.let {
+                showSnackbar(it)
+            }
+        }
+    }
+
+    private fun showSnackbar(message: String){
+        view?.let {
+            Snackbar
+                .make(it, message, Snackbar.LENGTH_INDEFINITE)
+                .setAction(R.string.retry, { reviewListViewModel.getReviews().retry() })
+                .show()
+        }
+    }
 }

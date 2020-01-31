@@ -1,9 +1,9 @@
 package com.massita.getyourguide.di
 
 import com.massita.getyourguide.repository.ReviewsDataFactory
-import com.massita.getyourguide.repository.ReviewsDataSource
 import org.koin.dsl.module
+import java.util.concurrent.Executors
 
 val dataModule = module {
-    single { ReviewsDataFactory(get()) }
+    single { ReviewsDataFactory(get(), Executors.newFixedThreadPool(5)) }
 }
