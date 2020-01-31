@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.navArgs
+import com.bumptech.glide.Glide
 import com.massita.getyourguide.R
 import com.massita.getyourguide.model.Author
 import com.massita.getyourguide.model.Review
@@ -40,13 +41,17 @@ class ReviewDetailFragment : Fragment() {
         ratingBar.rating = review.rating.toFloat()
         reviewDate.setTextOrGone(DateFormat.getDateInstance(DateFormat.LONG).format(review.created))
         reviewEnjoyment.setTextOrGone(review.enjoyment)
-        travelerType.setTextOrGone(review.travelerType)
         setAuthorDetails(review.author)
     }
 
     private fun setAuthorDetails(author: Author?) {
         author?.let {
-            authorDetails.text = getString(R.string.author_detail, it.fullName, it.country)
+            authorDetails.text = getString(R.string.author_detail, it.fullName ?: "", it.country ?: "")
+            Glide.with(this)
+                .load(it.photo)
+                .circleCrop()
+                .placeholder(R.drawable.ic_android_orange_24dp)
+                .into(authorImage)
         }
     }
 }
