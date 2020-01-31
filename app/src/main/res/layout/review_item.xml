@@ -4,36 +4,65 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:padding="@dimen/default_item_margin">
+
+    <TextView
+        android:id="@+id/reviewDate"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/default_text_size"
+        android:fontFamily="sans-serif-light"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/reviewTitle"
+        tools:text="January 31, 2020"/>
 
     <TextView
         android:id="@+id/reviewTitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textSize="@dimen/title_text_size"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:fontFamily="sans-serif-black"
+        android:layout_marginTop="@dimen/margin_small"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintRight_toLeftOf="@id/ratingBar"
-        app:layout_constraintBottom_toTopOf="@id/reviewComment"
+        app:layout_constraintTop_toBottomOf="@id/reviewDate"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/ratingBar"
         tools:text="Title"/>
+
+    <RatingBar
+        android:id="@+id/ratingBar"
+        style="?android:attr/ratingBarStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:numStars="5"
+        android:layout_marginTop="@dimen/margin_small"
+        app:layout_constraintBottom_toTopOf="@id/reviewComment"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/reviewTitle" />
 
     <TextView
         android:id="@+id/reviewComment"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/reviewTitle"
+        android:textSize="@dimen/default_text_size"
+        android:maxLines="2"
+        android:ellipsize="end"
+        android:fontFamily="sans-serif-condensed"
+        android:layout_marginTop="@dimen/margin_small"
+        app:layout_constraintTop_toBottomOf="@id/ratingBar"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         tools:text="Comment"/>
 
-    <RatingBar
-        android:id="@+id/ratingBar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        style="?android:attr/ratingBarStyleSmall"
-        android:numStars="5"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toRightOf="@id/reviewTitle"
-        app:layout_constraintBottom_toTopOf="@id/reviewComment"/>
+    <!-- Reviewer data -->
+
 </androidx.constraintlayout.widget.ConstraintLayout>

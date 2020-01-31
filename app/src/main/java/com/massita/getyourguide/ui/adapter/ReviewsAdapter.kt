@@ -8,7 +8,9 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.massita.getyourguide.R
 import com.massita.getyourguide.model.Review
+import com.massita.getyourguide.util.setTextOrGone
 import kotlinx.android.synthetic.main.review_item.view.*
+import java.text.DateFormat
 
 class ReviewsAdapter : PagedListAdapter<Review, ReviewsAdapter.ViewHolder> (diffCallback) {
 
@@ -39,8 +41,9 @@ class ReviewsAdapter : PagedListAdapter<Review, ReviewsAdapter.ViewHolder> (diff
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         fun bind(review: Review) {
-            itemView.reviewTitle.text = review.title
-            itemView.reviewComment.text = review.message
+            itemView.reviewTitle.setTextOrGone(review.title)
+            itemView.reviewComment.setTextOrGone(review.message)
+            itemView.reviewDate.setTextOrGone(DateFormat.getDateInstance(DateFormat.LONG).format(review.created))
             itemView.ratingBar.rating = review.rating.toFloat()
         }
 
